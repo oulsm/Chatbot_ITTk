@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <%- include('header.ejs') %>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Job description</title>
+    <style>
+      @media (min-width: 992px) {
+        .container {
+          margin: 0em auto;
+          background-color: #fff;
+          max-width: 50%;
+          border-radius: 15px;
+        }
+        .centeritem td
+        {
+          padding-left:10px;
+        }
+      }
+
+      @media (max-width: 992px) {
+        .container {
+          font-size: small;
+          margin: 0em auto;
+          background-color: #fff;
+          max-width: 100%;
+          border-radius: 15px;
+        }
+        .nextbutton{
+          margin-bottom: 15px;
+        }
+      }
+
+      .main-form {
+        width:70%;
+        margin: auto;
+        margin-bottom: 20px;
+      }
+
+      .divider{
+        position: relative;
+        width: 100%;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        border: 0;
+        border-top: 3px solid rgba(0, 0, 0, 0.1);
+      }
+
+      .row{
+        margin-top: 5px;
+        margin-bottom: 5px;
+      }
+
+      textarea{
+        margin-top: 5px;
+        width: 100%;
+      }
+
+      .addButton{
+        border-radius: 45%;
+      }
+
+      table{
+        width: 100%;
+      }
+
+
+
+    </style>
+</head>
+<body>
+  <%- include('navbar.ejs') %>
+    <div class="mainContainer">
+      <div class="container poppinsmedium">
+        <form method="POST" action="/post_jobdes" class="main-form h-auto ">
+          <!--title-->
+          <p class="text-center" style="font-size: 15px; padding-top: 5px;">Utilize job description to generate personalized interview</p>
+          
+          <!-- Job Description -->
+          <div class="form-group">
+            <div class="row"><label class="poppinsbold" style="font-size: 20px; margin-bottom: 20px;">Part 1. Job Details:</label></div>
+            <!-- Job position -->
+            <div class="row">
+              <div class="col">
+                <label>Job Title :</label>
+                <input type="text" name="job_title" class="form-control inputUser" required>
+              </div>
+            </div>
+            <div class="row">
+              <!-- Full time/ Part time -->
+              <div class="col-xs-9 col-md-5">
+                <label>Job Type :</label>
+                <select name="job_type" class="form-control">
+                  <option value="fulltime">Full Time</option>
+                  <option value="parttime">Part time</option>
+                </select>
+              </div>
+              <!-- Qualification -->
+              <div class="col-xs-9 col-md-7">
+                <label>Qualification:</label>
+                <select name="qualification" class="form-control">
+                  <option value="6">Postgraduate or Above</option>
+                  <option value="5">Degree</option>
+                  <option value="4">Non-Degree Tertiary</option>
+                  <option value="3">School Certificate</option>
+                  <option value="2">Form 3</option>
+                  <option value="1">Primary</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <!-- Career Level -->
+              <div class="col-xs-9 col-md-5">
+                <label>Career Level :</label>
+                <select name="career_level" class="form-control">
+                  <option value="0">Entry level</option>
+                  <option value="1">Middle level</option>
+                  <option value="2">Senior level</option>
+                </select>
+              </div>
+              <!-- Year of Experience -->
+              <div class="col">
+                <label>Year of Experience :</label>
+                <input name="YoE" class="form-control inputUser" type="number" min="0" value="0" required>
+              </div>
+            </div>
+            <div class="row">
+              <!-- Pay Range -->
+              <div class="col-xs-9 col-md-5" style="margin-top: 20px;"><label>Pay Range</label></div>
+              <div class="col">
+                <label>lower</label>
+                <input name="lower" id="lower" class="form-control inputUser" type="number" min="0" value="0" required>
+              </div>
+              <div class="col">
+                <label>upper</label>
+                <input name="upper" id="upper" class="form-control inputUser" type="number" min="0" value="0" required>
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div class="row">
+              <!-- Job Responsibilities -->
+              <div class="col"><label>Job Responsibilities</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <table id="responsibilitiestable">
+                  <tr>
+                    <td><textarea type="text" name="job_duty" class="form-control inputUser"></textarea></td>
+                  </tr>
+                  <tr>
+                    <td><textarea type="text" name="job_duty" class="form-control inputUser"></textarea></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div class="row">
+              <button type="button" class="ml-auto btn btn-success addButton" onclick="addRes()">+</button>
+              <button type="button" id="removeres" class="ml-1 btn btn-danger addButton" onclick="removeRes()">-</button>
+            </div>
+            <div class="divider"></div>
+            <div class="row">
+              <!-- Job Requirements -->
+              <div class="col"><label>Job Requirements</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <table id="reqtable">
+                  <tr>
+                    <td><textarea type="text" name="job_req" class="form-control inputUser"></textarea></td>
+                  </tr>
+                  <tr>
+                    <td><textarea type="text" name="job_req" class="form-control inputUser"></textarea></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div class="row">
+              <button type="button" class="ml-auto btn btn-success addButton" onclick="addReq()">+</button>
+              <button type="button" id="removereq" class="ml-1 btn btn-danger addButton" onclick="removeReq()">-</button>
+            </div>
+            <div class="divider"></div>
+            <div class="row">
+              <!-- Language Requirements : -->
+              <div class="col"><label>Language Requirements :</label></div>
+              <div class="col">
+                <div class="form-group">
+                  <input type="hidden" name="language_req" value="">
+                  <table class="form-check centeritem">
+                    <tr>
+                      <td><label for="chinese">Chinese</label></td>
+                      <td><input type="checkbox" id="chinese" name="language_req" value="Chinese"></td>
+                      <td><label for="english">English</label></td>
+                      <td><input type="checkbox" id="english" name="language_req" value="English"></td>    
+                    </tr>
+                    <tr>
+                      <td><label for="mandarin">Mandarin</label></td>
+                      <td><input type="checkbox" id="mandarin" name="language_req" value="Mandarin"></td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <!-- Programming Language Requirements : -->
+              <div class="col"><label>Programming Language Requirements :</label></div>
+              <div class="col">
+                <div class="form-group">
+                  <input type="hidden" name="pro_language_req" value="">
+                  <table class="form-check centeritem">
+                    <tr>
+                      <td><label for="SQL">SQL</label></td>
+                      <td><input type="checkbox" id="SQL" name="pro_language_req" value="SQL"></td>
+                      <td><label for="Java">Java</label></td>
+                      <td><input type="checkbox" id="Java" name="pro_language_req" value="Java"></td>    
+                      <td><label for="JavaScript">JavaScript</label></td>
+                      <td><input type="checkbox" id="JavaScript" name="pro_language_req" value="JavaScript"></td>    
+                    </tr>
+                    <tr>
+                      <td><label for="C++">C++/C</label></td>
+                      <td><input type="checkbox" id="C++" name="pro_language_req" value="C++"></td>
+                      <td><label for="C#">C#</label></td>
+                      <td><input type="checkbox" id="C#" name="pro_language_req" value="C#"></td>   
+                      <td><label for="Python">Python</label></td>
+                      <td><input type="checkbox" id="Python" name="pro_language_req" value="Python"></td>   
+                    </tr>
+                    <tr>
+                      <td><label for="HTML">HTML</label></td>
+                      <td><input type="checkbox" id="HTML" name="pro_language_req" value="HTML"></td>
+                      <td><label for="PHP">PHP</label></td>
+                      <td><input type="checkbox" id="PHP" name="pro_language_req" value="PHP"></td>   
+                      <td><label for="NodeJS">Node JS</label></td>
+                      <td><input type="checkbox" id="NodeJS" name="pro_language_req" value="NodeJS"></td>   
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <!-- About Company -->
+          <div class="form-group">
+            <div class="row"><label class="poppinsbold" style="font-size: 20px; margin-bottom: 20px;">Part 2. Company Details:</label></div>
+            <!-- Company Name -->
+            <div class="row">
+              <div class="col">
+                <label>Company Name :</label>
+                <input type="text" name="company_name" class="form-control inputUser" required>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <!-- Field of Company -->
+                <label for="fieldOfCompany">Field of Company:</label>
+                <select name="fieldOfCompany" class="form-control">
+                  <option value="telecommunications">Telecommunications</option>
+                  <option value="software">Software</option>
+                  <option value="PropertyDevelopment">Property Development</option>
+                  <option value="accounting">Accounting</option>
+                  <option value="customer service">Customer Service</option>
+                  <option value="Event Planning">Event Planning</option>
+                  <option value="Finance">Finance</option>
+                  <option value="Human Resources">Human Resources</option>
+                  <option value="Real Estate">Real Estate</option>
+                  <option value="Retail">Retail</option>
+                  <option value="engineering">Engineering</option>
+                  <option value="e-commerce">E-commerce</option>
+                  <option value="fintech">Fintech</option> 
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <!-- Company Overview -->
+                <label for="company_overview">Company Overview:</label>
+                <textarea type="text" name="company_overview" class="form-control inputUser" rows="5"></textarea>
+              </div>
+            </div>
+          </div>
+          <br>
+          <button type="submit" class="btn btn-primary nextbutton">Start the interview now</button>
+          <a type="button" class="btn btn-primary nextbutton" href="/">Back</a>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      function addRes() {
+        var table = document.getElementById("responsibilitiestable");
+        var row = table.insertRow();
+        var cell = row.insertCell(0);
+        cell.innerHTML = '<textarea type="text" name="job_duty" class="form-control inputUser"></textarea>';
+        var rowCount = table.rows.length;
+        if(rowCount > 1){
+          document.getElementById("removeres").disabled = false;
+        };
+      }
+      function removeRes(){
+        var table = document.getElementById("responsibilitiestable");
+        table.deleteRow(-1);
+
+        var rowCount = table.rows.length;
+        if(rowCount == 1){
+          document.getElementById("removeres").disabled = true;
+        };
+      }
+      function addReq() {
+        var table = document.getElementById("reqtable");
+        var row = table.insertRow();
+        var cell = row.insertCell(0);
+        cell.innerHTML = '<textarea type="text" name="job_req" class="form-control inputUser"></textarea>';
+        var rowCount = table.rows.length;
+        if(rowCount > 1){
+          document.getElementById("removereq").disabled = false;
+        };
+      }
+      function removeReq(){
+        var table = document.getElementById("reqtable");
+        table.deleteRow(-1);
+
+        var rowCount = table.rows.length;
+        if(rowCount == 1){
+          document.getElementById("removereq").disabled = true;
+        };
+      }
+      $("#lower").change(function() {
+        $("#upper").val($("#lower").val());
+      });
+      $("#upper").change(function() {
+        if($("#upper").val() < $("#lower").val()){
+          $("#upper").val($("#lower").val());
+        }
+      });
+    </script>
+</body>
+</html>

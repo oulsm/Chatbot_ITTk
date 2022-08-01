@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('header.ejs') %>
+    <title>Login</title>
+    <script>
+      $(document).ready(function(data) {
+        $(".alert").hide();
+        if(<%= error.length%> > 0){
+          $("#error-alert").show();
+          setTimeout(function () {
+            $("#error-alert").alert('close');
+          }, 3000)
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <%- include('navbar.ejs') %>
+    <div class="mainContainer d-sm-flex">
+      <div class="logincontainer ">
+        <span class="logintitle">Login to Your Account</span>
+        <form class="login100-form validate-form" method="POST" action="/login">
+          <input class="inputUser" type="text" name="username" placeholder="Username" required><br>
+						<button type="submit" value="Submit" class="loginbtn">
+							Login
+						</button>
+        </form>
+
+        <!-- Alert -->
+        <div class="alert alert-fixed alert-danger alert-dismissible fade show" id="error-alert">
+          <button type="button" class="close" data-dismiss="alert">x</button>
+          <strong><%= error %></strong>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

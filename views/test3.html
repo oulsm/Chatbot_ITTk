@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+
+    <title>Report</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href='/style_css.css' type="text/css"/>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    
+    
+    
+    <style>
+      
+.logincontainer{
+    width: auto;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    
+}
+
+
+.reportdatail{
+    padding-top: 35px;
+    display: flex;    
+       
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.reporticon{
+    font-size: 30px;
+    padding-top: 40px;
+    display: flex;      
+      
+    justify-content: center;
+    align-items: center;
+   
+}
+.greenrow{
+    background: rgb(42, 129, 163);
+    display: flex;    
+    font-size: 15px;
+    justify-content: right;
+    align-items: center;
+    
+}
+.circle-checkmark {
+    font-family: sans-serif;
+    background: rgb(24, 206, 24);
+    color: white;
+    margin-right: 10px;
+    padding: 0px 5px;
+    border-radius: 100%;
+  }
+  .circlemark {
+    font-family: Bahnschrift SemiBold;
+    color: rgb(24, 206, 24);
+    display: flex;    
+    padding-top: 10px;
+    padding-left: 60px;
+    font-size: 15px;
+    justify-content: left;
+    align-items: center;
+}
+.cross-checkmark{
+    font-family: sans-serif;
+    background: rgb(216, 38, 38);
+    color: white;
+    margin-right: 10px;
+    padding: 0px 5px;
+    border-radius: 100%;
+}
+.crossmark{
+    font-family: Bahnschrift SemiBold;
+    color: rgb(216, 38, 38);
+    display: flex;    
+    padding-top: 10px;
+    padding-left: 60px;
+    font-size: 15px;
+    justify-content: left;
+    align-items: center;
+}
+.track1 {
+    stroke-width: 10;
+    stroke: rgb(228, 178, 138);
+    fill: none;
+}
+.track2 {
+    stroke-width: 10;
+    stroke: rgb(123, 166, 231);
+    fill: none;
+}
+.track3 {
+    stroke-width: 10;
+    stroke: lightgrey;
+    fill: none;
+}
+.track4 {
+    stroke-width: 10;
+    stroke: rgb(149, 192, 138);
+    fill: none;
+}
+
+.progress1 {
+    stroke-width: 10;
+    stroke: rgb(216, 126, 66);
+    stroke-linecap: round;
+    fill: none;
+    transform: rotate(270deg);
+    transform-origin: center;
+    stroke-dasharray: 630;
+    stroke-dashoffset: 0;
+}
+.progress2 {
+    stroke-width: 10;
+    stroke: rgb(68, 138, 204);
+    stroke-linecap: round;
+    fill: none;
+    transform: rotate(270deg);
+    transform-origin: center;
+}
+.progress3 {
+    stroke-width: 10;
+    stroke: rgb(102, 100, 100);
+    stroke-linecap: round;
+    fill: none;
+    transform: rotate(270deg);
+    transform-origin: center;
+}
+.progress4 {
+    stroke-width: 10;
+    stroke: rgb(90, 202, 115);
+    stroke-linecap: round;
+    fill: none;
+    transform: rotate(270deg);
+    transform-origin: center;
+}
+.score{
+  position: relative;
+  padding-left: 60px;
+}
+.out{
+width: 200px;
+height: 200px;
+display: flex;
+align-items: center;
+justify-content: center;
+position: absolute;
+}  
+         body {
+        width: 100%;
+        
+        margin: 0;
+        padding: 0;
+
+    }
+    .button-div {
+  position: relative;
+}
+
+  
+
+    </style>
+</head>
+
+<body>
+
+    <div class="mainContainer d-sm-flex">
+      <div class="logincontainer">
+        <div class="container" id="reportcontainer" style="width: 210mm;
+        height: auto; height:auto; margin:auto;background: rgb(255, 255, 255);">
+        
+          <div class="row">
+            <div class=" col-lg-5 col-sm-5 ">
+              <p class="reportdatail">
+               
+            </div>
+
+            <div class=" flex bg-dark text-white col-lg-7 col-sm-7">
+              <p class="reporticon">PERFORMANCE REPORT</p>
+            </div>
+          </div>
+          <div class="row" style="height: 10%;">
+            <div class="col-lg-4  greenrow text-white">
+              SUMMARY
+            </div>
+            <div class=" col-lg-8 ">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-5 col-sm-3 ">
+              <canvas id="chart" width="100%" height="100%"></canvas>
+      
+            </div>
+            <div class="col-lg-7 col-sm-9">
+              <p style="text-decoration: underline; "> Job Description</p>
+              
+              <ul>
+              
+              </ul>    
+            </div>
+          </div>
+          <!-- Second -->
+          <div class="row" style="height: 10%;">
+            <div class="col-lg-4 greenrow text-white">
+              SELF-INTRODUCTION
+            </div>
+            <div class=" col-lg-8">
+            </div>
+          </div>
+          <div class="row ">
+           
+                <div class="col-lg-12">
+                  <p class="crossmark"><span class="cross-checkmark">✖</span> Your grammar still a long way to go....  </p>
+                </div>
+          
+              <div class="col-lg-12">
+                <p class="circlemark"><span class="circle-checkmark">✓</span> Nice grammar and need a few improvement </p>  
+              </div>
+            
+              <div class="col-lg-12">
+                <p class="crossmark"><span class="cross-checkmark">✖</span>Need express more of your information or don't over-explaining  </p> 
+              </div>
+         
+              <div class="col-lg-12">
+                <p class="circlemark"><span class="circle-checkmark">✓</span> You have ideal time management in your self-introduction   </p>  
+              </div>
+           
+              <div class="col-lg-12">
+                <p class="crossmark"><span class="cross-checkmark">✖</span> Your wordings are not precise between resume and job description </p> 
+              </div>
+            
+              <div class="col-lg-12">
+                <p class="circlemark"><span class="circle-checkmark">✓</span> Articulate speech and precise word </p>  
+              </div>
+          
+          </div>
+          <!-- Third -->
+          <div class="row" style="height: 10%;">
+            <div class="col-lg-4 greenrow text-white">
+              FOLLOW UP QUESTION(Skill)
+            </div>
+            <div class=" col-lg-8">
+            </div>
+          </div>
+          <div class="row ">
+           
+                <div class="col-lg-12">
+               <p class="circlemark"><span class="circle-checkmark">✓</span>Fully describing the skill or programming language and provide some supporting examples
+
+                 </p>
+             </div>
+ 
+              
+                 <div class="col-lg-12">
+                   <p class="crossmark"><span class="cross-checkmark">✖</span>Too short and need more explanation for the skill or programming language </p>
+                 </div>
+ 
+                   <div class="col-lg-12">
+                     <p class="crossmark"><span class="cross-checkmark">✖</span>Contains numerous errors in grammar, spelling, and punctuation </p>
+                   </div>
+               
+                    <div class="col-lg-12">
+                      <p class="circlemark"><span class="circle-checkmark">✓</span> Nice grammar but need a few improvement </p>  
+                    </div>
+            
+          
+
+          </div>
+          <!-- Fouth -->
+          <div class="row" style="height: 10%;">
+            <div class="col-lg-4 greenrow text-white">
+              FIELD OF COMPANY
+            </div>
+            <div class=" col-lg-8">
+            </div>
+          </div>
+          
+          <div class="row ">
+         
+               <div class="col-lg-12">
+              <p class="circlemark"><span class="circle-checkmark">✓</span>Precise answers in describing related feild of company such as 
+              
+                </p>
+            </div>
+            <div class="col-lg-12">
+              <p class="circlemark"><span class="circle-checkmark">✓</span>Provide related work or project experience                
+                with some elaborations</p>
+            </div>
+
+           
+                <div class="col-lg-12">
+                  <p class="crossmark"><span class="cross-checkmark">✖</span>Please explain more clearly the feild of company like 
+                    </p>
+                </div>
+                <div class="col-lg-12">
+                  <p class="crossmark"><span class="cross-checkmark">✖</span>Need more example about project experience and a
+                    reason no how the experience related</p>
+                </div>
+
+            
+          </div>
+         
+          
+        </div>
+      
+        <div>
+
+        <a href="/" class="btn btn-info">Return to Index page</a>
+        <button type="button" class="btn btn-info" style="float: right;" onclick="window.print()">Print report</button>
+      </div>
+
+    
+      </div>
+   
+      
+
+      <!-- Alert -->
+
+    </div>
+    </div>
+</body>
+<script> 
+
+  function printDiv() { 
+      var divContents = document.getElementById("reportcontainer").innerHTML; 
+      var a = window.open('', '', 'height=500, width=500'); 
+     // a.document.write('<html><head>');
+      a.document.write('<link rel="stylesheet" href="/style_css.css" type="text/css"/>'); 
+      a.document.write('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"><html>'); 
+
+      a.document.write('<body >'); 
+      a.document.write(divContents); 
+      a.document.write('</body></html>'); 
+      a.document.close(); 
+      a.print(); 
+  } 
+</script> 
+
+<script>
+  //var performance =[];
+  var grammar = 5;
+  var concise = 2;
+  var accuracy = 3;
+  var polite = 4;
+ 
+ 
+  
+  var chart1 = new Chart(document.getElementById('chart'), {
+  type: 'radar',
+  
+  data: {
+    labels: ['Grammar', 'Concise', 'Accuracy', 'Polite'],
+    datasets: [{
+      label: 'Performance',
+      data: [grammar,concise,accuracy,polite]
+    }]
+  },
+  options: {
+    scale: {
+   
+      gridLines: {
+        color: ['black', 'red', 'orange', 'yellow', 'green']
+      },
+      ticks: {
+        beginAtZero: true,
+        max: 5,
+        min: 0,
+        stepSize: 1
+    }
+    }
+  }
+});
+</script>
+
+
+  <% }); %>
+</html>

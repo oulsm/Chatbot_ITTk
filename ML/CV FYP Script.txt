@@ -1,0 +1,54 @@
+CV
+First: Tim
+Last: Kit
+Con No: 36598467
+email: tim@ou.com
+
+Institution: Open University
+Qualification : Degree
+Major: Computer Science
+Finish year: 2022
+CGPA: 3.26
+Honor: Upper Second
+Language: Eng and Mandarin
+Programming Language: Java Python PHP
+Skill:
+	Expert in Microsoft excel
+	Professional in developing web server
+	Expert in Google Dialog Flow
+	Well communication with teammate
+
+Act Name: Ive school activity
+Org: Ive
+Role: Event staff
+Start: random (at least two month ago)
+End: random && date > Start (at least two month ago)
+Act details : manage a team of students for the internship program
+
+Award Title: STEM competition
+Received Time: random (at least two month ago)
+Award Type: First runner up
+
+Project Name: Cloud Migration Project
+Role: Team member
+Start: random (at least last year)
+End: random && date > Start (at least last year)
+Project desc: Maintain the backend system
+
+Project Name: IoT Security Project
+Role: Team member
+Start: random (at least last year)
+End: random && date > Start (at least last year)
+Project desc: Develop the order tracking system
+
+Company Name: HKT
+Position:: Trainee
+$: 8500
+YoE: 1
+Work Res: Design a web server Use RESTful service communication with front end
+
+Company Name: PCCW
+Position:: Junior
+$: 9500
+YoE: 1
+Work Res: Maintain backend system development

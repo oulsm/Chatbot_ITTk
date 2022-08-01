@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('header.ejs') %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      iframe { 
+          display:block; 
+          border: 0px;
+          margin: 0px;
+          padding: 0px;}
+      html, body {
+          border: 0px;
+          margin: 0px;
+          padding: 0px;
+      }
+    </style>
+    <title>Interview</title>
+  </head>
+  <body>
+    <%- include('navbar.ejs') %>
+    <div class="mainContainer2">
+      <iframe style="width: 100%;" src="http://interviewsimulator.azurewebsites.net/" id="interviewsimulator"  frameborder="0" scrolling="no" onload="resizeIframe(this)" >
+      </iframe>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+      function resizeIframe(obj) {
+        obj.style.height = obj.contentWindow.document.documentElement.scrollHeight + 'px';
+      }
+
+      function myPeriodicMethod() {
+        $.ajax({
+          url: "http://localhost:3001/api/check/end",
+          success: function(data) {
+            if(data.state === 0){
+              location.replace("http://localhost:3001/report")
+            } else {
+              console.log(data.state);
+            }
+          },
+          complete: function() {
+            // schedule the next request *only* when the current one is complete:
+            setTimeout(myPeriodicMethod, 10000);
+          }
+        });
+      }
+
+      setTimeout(myPeriodicMethod, 10000);
+    </script>
+  </body>
+</html>

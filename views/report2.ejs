@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+  <%- include('header.ejs') %>
+    <title>Report</title>
+   
+    
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+    
+    <style>
+      .reporticon{
+    font-size: 30px;
+    padding-top: 40px;
+    padding-left: 40px;
+    display: flex;      
+      
+    justify-content: center;
+    align-items: center;
+   
+}
+      body {
+        width: 100%;
+        
+        margin: 0;
+        padding: 0;
+
+    }
+    .button-div {
+  position: relative;
+}
+.flex-column{
+  display:flex;
+  flex-direction: column;
+
+}
+
+
+
+
+
+.flex-row{
+  display:flex;
+  flex-direction: row;
+}
+.highcharts-figure,
+.highcharts-data-table table {
+  min-width: 320px;
+  max-width: 700px;
+  margin: 1em auto;
+}
+
+.highcharts-data-table table {
+  font-family: Verdana, sans-serif;
+  border-collapse: collapse;
+  border: 1px solid #ebebeb;
+  margin: 10px auto;
+  text-align: center;
+  width: 100%;
+  max-width: 500px;
+}
+
+.highcharts-data-table caption {
+  padding: 1em 0;
+  font-size: 1.2em;
+  color: #555;
+}
+
+.highcharts-data-table th {
+  font-weight: 600;
+  padding: 0.5em;
+}
+
+.highcharts-data-table td,
+.highcharts-data-table th,
+.highcharts-data-table caption {
+  padding: 0.5em;
+}
+
+.highcharts-data-table thead tr,
+.highcharts-data-table tr:nth-child(even) {
+  background: #f8f8f8;
+}
+
+.highcharts-data-table tr:hover {
+  background: #f1f7ff;
+}
+.highcharts-button-symbol, .highcharts-legend-item, .highcharts-credits{
+  display: none !important;
+}
+.min200{
+  height: auto ;
+}
+    </style>
+</head>
+
+<body>
+  <%- include('navbar.ejs') %>
+    <div class="mainContainer d-sm-flex">
+      <div class="logincontainer">
+        <div  id="reportcontainer" style="width: 210mm;
+        height: auto; height:auto; margin:auto;">
+         <% reports.forEach(function(report) { %>
+          <div class="flex-row-title ">
+            <div style="flex: 60%; ">
+               
+              <p class="reportdatail">
+                Report Date: <%= report.date %> <br>
+                Interview: <%= report.name %><br>
+                Job Application: <%= report.title %></p>
+            </div>
+
+            <div  class="bg-dark text-white">
+              <p class="reporticon">PERFORMANCE REPORT</p>
+            </div>
+          </div>
+          <div class="flex-column">
+            <div class="greenrow text-white pr-2">
+              SUMMARY
+            </div>
+             </div>
+
+            <div class="flex-row-title">
+              <div style="width: 100%;">
+                <p class="text-center" style="padding-top:20px;"> <b>OVERALL PERFORMANCE</b></p><br> 
+                <figure class="highcharts-figure">
+                  <div id="container"></div>
+                  <p class="highcharts-description">
+                </figure>  
+              </div>
+              <div style="flex-basis: 60%;">
+                <p style="padding: 20px; "> <b>Job Description</b></p>
+                
+                <ul>
+                  <% report.jobduty.forEach(function(job_duty) { %>
+                      <li>  <%= job_duty %>   </li>     
+                  <% }); %>
+                </ul>      
+              </div>
+            </div>
+            <div class="flex-row"></div>
+            
+           
+          <!-- Second -->
+            <div class="greenrow text-white pr-2">
+              SELF-INTRODUCTION
+            </div>
+          <div class="min200">
+     
+                <p class="crossmark"><span class="cross-checkmark">✖</span> Your have tatal 6 mistakes like spelling mistake and grammar mistake  </p>
+              
+               
+                <p class="crossmark"><span class="cross-checkmark">✖</span>Need express more of your information or don't over-explaining  </p> 
+                
+               
+               
+      
+               
+                <p class="circlemark"><span class="circle-checkmark">✓</span> Articulate speech and precise word </p>  
+              
+          </div>
+          <!-- Third -->
+          <div>
+            <div class="greenrow text-white pr-2">
+              SKILL
+            </div>
+          </div>
+          <div class="min200">
+           
+              
+                   <p class="crossmark"><span class="cross-checkmark">✖</span>Too short and need more explanation for the database skill  </p>
+                               
+                   <p class="circlemark"><span class="circle-checkmark">✓</span> Nice grammar but need a few improvement  </p>  
+                  
+
+          </div>
+          <!-- Fouth -->
+          <div >
+            <div class="greenrow text-white pr-2">
+                COMPANY
+            </div>
+          </div>
+          
+          <div class="min200">
+          
+              <p class="circlemark"><span class="circle-checkmark">✓</span>Precise answers in describing related feild of company such as 
+                
+                </p>
+              <p class="circlemark"><span class="circle-checkmark">✓</span>Provide related work or project experience                
+                with some elaborations</p>
+           
+                  <p class="crossmark"><span class="cross-checkmark">✖</span>Please explain more clearly the feild of company like 
+                 
+                    </p>
+                  <p class="crossmark"><span class="cross-checkmark">✖</span>Need more example about project experience and a
+                    reason no how the experience related</p>
+
+      
+            
+          </div>
+         
+          
+        </div>
+      
+        <div>
+
+        <a href="/" class="btn btn-info">Return to Index page</a>
+        <button type="button" class="btn btn-info" style="float: right;" onclick="window.print()">Print report</button>
+      </div>
+
+    
+      </div>
+   
+      
+
+      <!-- Alert -->
+
+    </div>
+    </div>
+</body>
+<script> 
+
+  function printDiv() { 
+      var divContents = document.getElementById("reportcontainer").innerHTML; 
+      var a = window.open('', '', 'height=500, width=500'); 
+     // a.document.write('<html><head>');
+      a.document.write('<link rel="stylesheet" href="/style_css.css" type="text/css"/>'); 
+      a.document.write('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"><html>'); 
+
+      a.document.write('<body >'); 
+      a.document.write(divContents); 
+      a.document.write('</body></html>'); 
+      a.document.close(); 
+      a.print(); 
+  } 
+</script> 
+
+<script>
+
+var grammar = 0;
+  var concise = 0;
+  var accuracy = 0;
+  var polite = 0;
+  var avg_concise = 0
+  <%Object.keys(report.intro).forEach(function(key) {%>
+    
+    if("<%= key %>" == "grammar"){
+      grammar = <%= report.intro[key]%>
+      
+    } else if("<%= key %>" == "concise"){ 
+      <%for (i = 0 ; i < report.intro[key].length ; i++){ %>
+        avg_concise += <%= report.intro[key][i]%>
+        <%  } %>
+        concise = avg_concise/ <%= report.intro[key].length%>
+        console.log(concise);
+       }
+    else if("<%= key %>" == "accuracy"){
+        accuracy = <%= report.intro[key]%>
+      }else if("<%= key %>" == "polite"){
+        polite = <%= report.intro[key]%>
+      }
+  <%  });%>
+  <%Object.keys(report.ques).forEach(function(key) {%>
+    if("<%= key %>" == "grammar" && <%= report.ques[key]%> == 1 ){
+      if(grammar> 3 ){
+        grammar = grammar
+      }else if(grammar <= 3){
+        grammar += 1.5
+      }
+    }else if("<%= key %>" == "grammar" && <%= report.ques[key]%> == -1){
+      if(grammar> 3 ){
+        grammar -= 1.5
+      }else if(grammar <= 3){
+        grammar = grammar
+      }
+    } 
+    if("<%= key %>" == "concise" && <%= report.ques[key]%> > 0){ 
+        concise = (concise+<%= report.ques[key]%>)/2
+       }
+    if("<%= key %>" == "accuracy" && <%= report.ques[key]%> == 1 ){
+      if(accuracy> 3 ){
+        accuracy = accuracy
+      }else if(accuracy <= 3){
+        accuracy += 1.5
+      }
+    }else if("<%= key %>" == "accuracy" && <%= report.ques[key]%> == -1){
+      if(accuracy> 3 ){
+        accuracy -= 1.5
+      }else if(accuracy <= 3){
+        accuracy = accuracy
+      }
+    } 
+    if("<%= key %>" == "polite" && <%= report.ques[key]%> == 1){
+      if(polite> 3 ){
+        polite = polite
+      }else if(polite <= 3){
+        polite += 1.5
+      }
+    }else if("<%= key %>" == "polite" && <%= report.ques[key]%> == -1){
+      if(polite> 3 ){
+        polite -= 1.5
+      }else if(polite <= 3){
+        polite = polite
+      }
+    } 
+
+    <%  });%>
+Highcharts.chart('container', {
+
+  chart: {
+    polar: true,
+    type: 'line'
+  },
+
+
+  title: {
+    text: '',
+    x: -80
+  },
+
+  pane: {
+    size: '80%'
+  },
+
+  xAxis: {
+    categories: ['Grammar', 'Concise', 'Accuracy', 'Polite'],
+    tickmarkPlacement: 'on',
+    lineWidth: 0
+  },
+
+  yAxis: {
+    gridLineInterpolation: 'polygon',
+    lineWidth: 0,
+    min: 0,
+    max: 5,
+  },
+
+  tooltip: {
+    shared: true,
+    pointFormat: '<span style="color:{series.color}">{series.name}: <b>${point.y:,.0f}</b><br/>'
+  },
+
+  legend: {
+    align: 'right',
+    verticalAlign: 'middle',
+    layout: 'vertical'
+  },
+
+  series: [{
+    name: 'Summary',
+    data: [grammar,concise , accuracy, polite],
+    pointPlacement: 'on'
+  }],
+
+  responsive: {
+    rules: [{
+      condition: {
+        maxWidth: 500
+      },
+      chartOptions: {
+        legend: {
+          align: 'center',
+          verticalAlign: 'bottom',
+          layout: 'horizontal'
+        },
+        pane: {
+          size: '70%'
+        }
+      }
+    }]
+  }
+
+});
+</script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+<figure class="highcharts-figure">
+  <div id="container"></div>
+</figure>
+<% }); %>
+</html>

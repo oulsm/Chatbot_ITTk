@@ -1,0 +1,128 @@
+{
+  
+  "name": "test_dialogflow",
+  
+  "version": "1.0.0",
+  
+  "main": "Test.js",
+  
+  "scripts": {
+  
+    
+  "test": "echo \"Error: no test specified\" && exit 1",
+  
+    
+  "start": "node server.js"
+  
+  },
+  
+  "author": "",
+  
+  "license": "ISC",
+  
+  "dependencies": {
+  
+    
+  "body-parser": "^1.19.1",
+  
+    
+  "child-process-promise": "^2.2.1",
+  
+    
+  "connect-flash": "^0.1.1",
+  
+    
+  "cookie-parser": "^1.4.6",
+  
+    
+  "cors": "^2.8.5",
+  
+    
+  "csv-writer": "^1.6.0",
+  
+    
+  "ejs": "^3.1.6",
+  
+    
+  "express": "^4.17.1",
+  
+    
+  "express-message": "^1.2.3",
+  
+    
+  "express-session": "^1.17.2",
+  
+    
+  "express-validator": "^6.14.0",
+  
+    
+  "fast-csv": "^4.3.6",
+  
+    
+  "firebase-admin": "^10.0.1",
+  
+    
+  "http": "*",
+  
+    
+  "jquery": "^3.6.0",
+  
+    
+  "json2csv": "^5.0.7",
+  
+    
+  "mathjs": "^10.4.0",
+  
+    
+  "node-gyp": "^9.0.0",
+  
+    
+  "nodemon": "^2.0.15",
+  
+    
+  "python-shell": "^3.0.1",
+  
+    
+  "request": "^2.88.2",
+  
+    
+  "string-compare": "^1.1.2",
+  
+    
+  "string-comparison": "^1.1.0",
+  
+    
+  "synonyms": "^1.0.1",
+  
+    
+  "textgears-api": "^1.1.1",
+  
+    
+  "uuid": "^8.3.2",
+  
+    
+  "words-count": "^2.0.2"
+  
+  },
+  
+  "repository": {
+  
+    
+  "type": "git",
+  
+    
+  "url": "git+https://github.com/MakChuenKit/Chatbot_Prototype_ITTK.git"
+  
+  },
+  
+  "bugs": {
+  
+    
+  "url": "https://github.com/MakChuenKit/Chatbot_Prototype_ITTK/issues"
+  
+  },
+  
+  "homepage": "https://github.com/MakChuenKit/Chatbot_Prototype_ITTK#readme",
+  
+  "description": ""
+}

@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <%- include('header.ejs') %>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+    <title>CV information</title>
+
+
+    <style>
+      @import url('https://fonts.googleapis.com/css?family=Roboto');
+
+      body {
+        font-family: 'Roboto', sans-serif;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      i {
+        margin-right: 10px;
+      }
+
+      .container {
+
+        margin: 0em auto;
+        padding-top: 20px;
+        background-color: #fff;
+        border-radius: 25px;
+
+      }
+    </style>
+</head>
+<!--<div class="col-md-8">
+              <div class="wizard">
+                <div class="wizard-inner">
+                  <div class="connecting-line"></div>
+                  <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active">
+                      <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" aria-expanded="true"><span
+                          class="round-tab">1 </span> </a>
+                    </li>
+                    <li role="presentation" class="disabled">
+                      <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" aria-expanded="false"><span
+                          class="round-tab">2</span> </a>
+                    </li>
+                    <li role="presentation" class="disabled">
+                      <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab"><span
+                          class="round-tab">3</span> </a>
+                    </li>
+                    <li role="presentation" class="disabled">
+                      <a href="#step4" data-toggle="tab" aria-controls="step4" role="tab"><span
+                          class="round-tab">4</span> </a>
+                    </li>
+                    <li role="presentation" class="disabled">
+                      <a href="#step5" data-toggle="tab" aria-controls="step4" role="tab"><span
+                          class="round-tab">5</span> </a>
+                    </li>
+
+                  </ul>
+                </div>
+
+                <form role="form" action="/submit-form" method="POST" class="login-box">
+                  <div class="tab-content" id="main_form">
+                   
+                    <div class="tab-pane active" role="tabpanel" id="step1">
+                      <h6 class="text-center">Utilize your resume to generate personalized interview</h6>
+                      <h4 class="text-center">Personal information</h4>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label>Firstname</label>
+                            <input class="form-control" type="text" name="firstname" placeholder="" required>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label>Lastname</label>
+                            <input class="form-control" type="text" name="lastname" placeholder="" required>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label>Contact Number</label>
+                            <input class="form-control" type="tel" name="contactNo" placeholder="" required>
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label>Email</label>
+                            <input class="form-control" type="email" name="email" placeholder="" required>
+                          </div>
+                        </div>
+                      </div>
+                      <ul class="list-inline pull-right">
+                        <li><button type="button" class="default-btn next-step">Next step</button></li>
+                      </ul>
+                    </div>
+              
+                    <div class="tab-pane" role="tabpanel" id="step2">
+                      <h6 class="text-center">Utilize your resume to generate personalized interview</h6>
+                      <h4 class="text-center">Education</h4>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label>Institution</label>
+                            <input class="form-control" type="text" name="institution" placeholder="" required>
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="">Qualification :</label>
+                            <select name="qualification" class="form-control">
+                              <option value="6">Postgraduate or above</option>
+                              <option value="5">Degree</option>
+                              <option value="4">Non-Degree Tertiary</option>
+                              <option value="3">School Certificate</option>
+                              <option value="2">Form 3</option>
+                              <option value="1">Primary</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label>Major</label>
+                            <input type="text" name="major" class="form-control" required>
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="firstname">Finish Year:</label>
+                            <input type="number" name="finishYear" id="firstname" min="1950" max="2100" step="1"
+                              class="form-control " required>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="lastname">CGPA</label>
+                            <input type="number" name="CGPA" id="lastname" min="0" max="4" step="0.01"
+                              class="form-control" required>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="">Honor:</label>
+                            <select name="honor" class="form-control">
+                              <option value="5">First Class Honours</option>
+                              <option value="4">Upper Second Class Honours</option>
+                              <option value="3">Lower Second Class honours</option>
+                              <option value="2">Third Class honours</option>
+                              <option value="1">Ordinary degree</option>
+                            </select>
+                          </div>
+                        </div>
+
+                      </div>
+                      <ul class="list-inline pull-right">
+                        <li><button type="button" class="default-btn prev-step">Back</button></li>
+                        <li><button type="button" class="default-btn next-step">Next-step</button></li>
+                      </ul>
+                    </div>
+
+                    
+                    <div class="tab-pane" role="tabpanel" id="step3">
+                      <h6 class="text-center">Utilize your resume to generate personalized interview</h6>
+                      <h4 class="text-center">Skill Set</h4>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="">Language :</label>
+                            <div class="form-check">
+                              <input type="checkbox" name="language" id="Chinese" value="Chinese">
+                              <label for="accept-terms" class="">Chinese</label>
+
+                              <input type="checkbox" name="language" id="English" value="English">
+                              <label for="accept-terms" class="">English</label>
+
+                              <input type="checkbox" name="language" id="Mandarin" value="Mandarin">
+                              <label for="accept-terms" class="">Mandarin</label>
+
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="">Programming Language:</label>
+                          <div class="form-check">
+                            <input type="checkbox" name="Pro_language" id="SQL" value="SQL">
+                            <label> SQL</label>
+                            <input type="checkbox" name="Pro_language" id="Java" value="Java">
+                            <label> Java</label>
+                            <input type="checkbox" name="Pro_language" id="C++" value="C++">
+                            <label> C++/C</label>
+                            <input type="checkbox" name="Pro_language" id="C#" value="C#">
+                            <label> C#</label>
+                            <input type="checkbox" name="Pro_language" id="JavaScript" value="JavaScript">
+                            <label> JavaScript</label>
+                            <input type="checkbox" name="Pro_language" id="Node JS" value="Node JS">
+                            <label> Node JS</label>
+                            <input type="checkbox" name="Pro_language" id="PHP" value="PHP">
+                            <label> PHP</label>
+                            <input type="checkbox" name="Pro_language" id="HTML" value="PHP">
+                            <label> HTML</label>
+                            <input type="checkbox" name="Pro_language" id="Python" value="Python">
+                            <label> Python</label>
+
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <div class="form-group" id="skillcontainer">
+                            <label>Software Skills</label>
+                            <input class="form-control" type="text" name="skillName" placeholder="" required>
+                          </div>
+                          <i class="fa fa-plus-square-o" style="font-size:36px;color:red" id="addactivitive"
+                            onclick="addFields()"> </i> <i class="fa fa-minus-square-o" style="font-size:36px;"
+                            id="removeactivitive" onclick="removeFields()"></i>
+                        </div>
+
+
+                      </div>
+                      <ul class="list-inline pull-right">
+                        <li><button type="button" class="default-btn prev-step">Back</button></li>
+                        <li><button type="button" class="default-btn next-step">Next-step</button></li>
+                      </ul>
+                    </div>
+                
+                    <div class="tab-pane" role="tabpanel" id="step4">
+                      <h6 class="text-center">Utilize your resume to generate personalized interview</h6>
+                      <h4 class="text-center">Activity</h4>
+                      <div>
+                        <div class="row">
+
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label for="">Activity Name </label>
+                              <input type="text" name="activityName" class="form-control">
+                            </div>
+                          </div>
+
+                          <div class="col-md-6">
+                            <label for="">Organizer</label>
+                            <input type="text" name="organizer" class="form-control">
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label for="">Role in Activity</label>
+                              <select name="activeRole" class="form-control">
+                                <option value="3">Organizer</option>
+                                <option value="2">Event staff</option>
+                                <option value="1">Participant</option>
+                              </select>
+
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <label for="">Period(Start)</label>
+                            <input type="date" name="periodStart" class="form-control">
+                          </div>
+                          <div class="col-md-6">
+                            <label for="">Period(End)</label>
+                            <input type="date" name="periodEnd" class="form-control">
+                          </div>
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label>Activity details</label>
+                              <textarea class="form-control" name="activityDetail" rows="3"></textarea>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div id="activityContainer"> </div>
+                      Add new activity <i class="fa fa-plus-square-o" style="font-size:36px;color:red"
+                        id="addactivity"></i> Remove one activity <i class="fa fa-minus-square-o"
+                        style="font-size:36px;" id="removeactivity"></i>
+                      <br><br>
+
+                      <div class="row ">
+                        <div class="col-md-12">
+                          <div class="list-content">
+
+                            <a href="#listone" data-toggle="collapse" aria-expanded="false" aria-controls="listone">
+                              Awards <i class="fa fa-chevron-down"></i></a>
+                            <div class="collapse" id="listone">
+                              <div class="list-box">
+                                <div class="row">
+                                  <div class="col-md-6">
+                                    <div class="form-group">
+                                      <label>Award Title</label>
+                                      <input class="form-control" type="text" name="awardTitle" placeholder="">
+                                    </div>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <div class="form-group">
+                                      <label>Received Time</label>
+                                      <input class="form-control" type="date" name="receivedTime" placeholder="">
+                                    </div>
+                                  </div>
+                                  <div class="col-md-12">
+                                    <div class="form-group">
+                                      <label for="">Award Type:</label>
+                                      <select name="awardType" class="form-control">
+                                        <option value="3">Champion</option>
+                                        <option value="2">First runner up</option>
+                                        <option value="1">Second runner up</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+                      <div id="awardContainer"> </div>
+                      Add new award <i class="fa fa-plus-square-o" style="font-size:36px;color:red" id="addaward"></i>
+                      Remove one award <i class="fa fa-minus-square-o" style="font-size:36px;" id="removeaward"></i>
+
+                      <ul class="list-inline pull-right">
+                        <li><button type="button" class="default-btn prev-step">Back</button></li>
+                        <li><button type="button" class="default-btn next-step">Next-step</button></li>
+                      </ul>
+                    </div>
+
+
+                   
+                    <div class="tab-pane" role="tabpanel" id="step5">
+                      <h6 class="text-center">Utilize your resume to generate personalized interview</h6>
+                      <h4 class="text-center">Experience</h4>
+                      <div class="all-info-container">
+
+                        <div class="list-content">
+                          <a href="#listtwo" data-toggle="collapse" aria-expanded="false"
+                            aria-controls="listtwo">Project
+                            Experience <i class="fa fa-chevron-down"></i></a>
+                          <div class="collapse" id="listtwo">
+                            <div class="list-box">
+                              <div class="row">
+                                <div class="col-md-6">
+                                  <div class="form-group">
+                                    <label>Project Name</label>
+                                    <input class="form-control" type="text" name="projectName" placeholder="">
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="form-group">
+                                    <label>Role in the project</label>
+                                    <select name="projectRole" class="form-control">
+                                      <option value="2">Individual</option>
+                                      <option value="2">Manager</option>
+                                      <option value="1">Team member</option>
+                                    </select>
+                                  </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                  <div class="form-group">
+                                    <label>Project Duration(Start)</label>
+                                    <input class="form-control" type="date" name="projectStart" placeholder="">
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="form-group">
+                                    <label>Project Duration(End)</label>
+                                    <input class="form-control" type="date" name="projectEnd" placeholder="">
+                                  </div>
+                                </div>
+                                <div class="col-md-12">
+                                  <div class="form-group">
+                                    <label>Project description</label>
+                                    <textarea class="form-control" name="projectDesc" rows="3"></textarea>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div id="projectContainer"> </div>
+                        Add new project <i class="fa fa-plus-square-o" style="font-size:36px;color:red"
+                          id="addproject"></i>
+                        Remove one project <i class="fa fa-minus-square-o" style="font-size:36px;"
+                          id="removeproject"></i>
+                        <div class="list-content">
+                          <a href="#listthree" data-toggle="collapse" aria-expanded="false"
+                            aria-controls="listthree">Work
+                            Experience <i class="fa fa-chevron-down"></i></a>
+                          <div class="collapse" id="listthree">
+                            <div class="list-box">
+                              <div class="row">
+                                <div class="col-md-6">
+                                  <div class="form-group">
+                                    <label>Company Name</label>
+                                    <input class="form-control" type="text" name="companyName" placeholder="">
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="form-group">
+                                    <label>Position</label>
+                                    <select name="position" class="form-control">
+                                      <option value="3">Manager</option>
+                                      <option value="2">Senior</option>
+                                      <option value="2">Assistant</option>
+                                      <option value="1">Junior</option>
+                                      <option value="1">Trainee</option>
+                                    </select>
+                                  </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                  <div class="form-group">
+                                    <label>Salary </label>
+                                    <input class="form-control" type="number" min="0" step="0.01" name="salary"
+                                      placeholder="$">
+                                  </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                  <div class="form-group">
+                                    <label>Year of Experience</label>
+                                    <input class="form-control" type="number" min="0" step="0.5" name="yearOfexp"
+                                      placeholder="">
+                                  </div>
+                                </div>
+                                <div class="col-md-12">
+                                  <div class="form-group">
+                                    <label>Work Responsibility</label>
+                                    <textarea class="form-control" name="workResponsibility" rows="3"></textarea>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div id="workContainer"> </div>
+                        Add new work <i class="fa fa-plus-square-o" style="font-size:36px;color:red" id="addwork"></i>
+                        Remove one work <i class="fa fa-minus-square-o" style="font-size:36px;" id="removework"></i>
+
+                      </div>
+                      <ul class="list-inline pull-right">
+                        <li><button type="button" class="default-btn prev-step">Back</button></li>
+                        <li><button type="submit" class="default-btn next-step">Finish</button></li>
+                      </ul>
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+                </form>
+              </div>
+            </div>-->
+<body>
+
+
+  <%- include('navbar.ejs') %>
+    <div class="mainContainer3">
+      <section class="signup-step-container">
+        <div class="container">
+          <div class="row d-flex justify-content-center">
+        
+            <canvas id="chart"></canvas>
+          </div>
+        </div>
+      </section>
+
+
+
+    </div>
+
+</body>
+<script>
+  var chart1 = new Chart(document.getElementById('chart'), {
+  type: 'radar',
+  width: '100%',
+  height: '500',
+  data: {
+    labels: ['Grammar', 'Concise', 'Accuracy','Organization', 'Polite'],
+    datasets: [{
+      label: 'Performance',
+      data: [5,4,4,3,4]
+    }]
+  },
+  options: {
+    scale: {
+   
+      gridLines: {
+        color: ['black', 'red', 'orange', 'yellow', 'green']
+      },
+      ticks: {
+        beginAtZero: true,
+        max: 5,
+        min: 0,
+        stepSize: 1
+    }
+    }
+  }
+});
+  $("#radar-chart").insertFusionCharts({
+  type: 'radar',
+  width: '100%',
+  height: '500',
+  dataFormat: 'json',
+  dataSource: {
+    "chart": {
+      "caption": "2015 Budget for Acme Inc.",
+      "captionFontSize": "22",
+      // more chart configuration options
+    },
+    "categories": [{
+    "category": [{
+      "label": "Engineering"
+    }, {
+      "label": "Sales"
+    }
+    // more categories
+  ]
+}],
+    "dataset": [{
+  "seriesname": "Allocated Budget",
+  "data": [{
+      "value": "10000"
+    }, {
+      "value": "16500"
+    }
+    // more data points for first series
+  ]
+}, {
+  "seriesname": "Actual Spend",
+  "data": [{
+      "value": "8000"
+    }, {
+      "value": "9500"
+    }
+    // more data points for first series
+  ]
+}
+    ]
+  }
+});
+  $(document).ready(function () {
+    $('.nav-tabs > li a[title]').tooltip();
+
+    //Wizard
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+
+      var target = $(e.target);
+
+      if (target.parent().hasClass('disabled')) {
+        return false;
+      }
+    });
+
+    $(".next-step").click(function (e) {
+
+      var active = $('.wizard .nav-tabs li.active');
+      active.next().removeClass('disabled');
+      nextTab(active);
+
+    });
+    $(".prev-step").click(function (e) {
+
+      var active = $('.wizard .nav-tabs li.active');
+      prevTab(active);
+
+    });
+  });
+
+  function nextTab(elem) {
+    $(elem).next().find('a[data-toggle="tab"]').click();
+  }
+  function prevTab(elem) {
+    $(elem).prev().find('a[data-toggle="tab"]').click();
+  }
+
+
+  $('.nav-tabs').on('click', 'li', function () {
+    $('.nav-tabs li.active').removeClass('active');
+    $(this).addClass('active');
+  });
+  //add activity field
+  $(document).ready(function (e) {
+
+    $("#addactivity").click(function (e) {
+      $("#activityContainer")
+        .append('<br><div class="row" id="activityContainer2"> ' +
+          '<div class="col-md-12">' +
+          '<div class="form-group">' +
+          '<label for="">Activity Name </label>' +
+          '<input type="text" name="activityName" class="form-control">' +
+          '</div>' +
+          '</div>' +
+          '<div class="col-md-6">' +
+          '<label for="">Organizer</label>' +
+          '<input type="text" name="organizer" class="form-control">' +
+          '</div>' +
+          '<div class="col-md-6">' +
+          '<div class="form-group">' +
+          '<label for="">Role in Activity</label>' +
+          '<select name="activeRole" class="form-control">' +
+          '<option value="3">Organizer</option>' +
+          '<option value="2">Event staff</option>' +
+          '<option value="1">Participant</option>  ' +
+          '</select>' +
+          '</div>' +
+          '</div>' +
+          '<div class="col-md-6">' +
+          '<label for="">Period(Start)</label>' +
+          '<input type="date" name="periodStart" class="form-control">' +
+          '</div>' +
+          '<div class="col-md-6">' +
+          '<label for="">Period(End)</label>' +
+          '<input type="date" name="periodEnd" class="form-control">   ' +
+          '</div> ' +
+          '<div class="col-md-12">' +
+          '<div class="form-group">' +
+          '<label>Activity details</label>' +
+          '<textarea class="form-control" name="activityDetail" rows="3"></textarea>' +
+          '</div>' +
+          '</div>' +
+          '</div> ');
+    });
+    //remove activity field
+    $("#removeactivity").click(function (e) {
+      var div = document.getElementById('activityContainer2');
+      div.remove();
+    });
+    //add award field
+    $("#addaward").click(function (e) {
+      $("#awardContainer")
+        .append('<br><div class="row" id="awardContainer2"> ' +
+          '<div class="col-md-12">' +
+          '<div class="list-content">' +
+          '<a href="#listfour" data-toggle="collapse" aria-expanded="false" aria-controls="listfour">' +
+          'Awards <i class="fa fa-chevron-down"></i></a>' +
+          '<div class="collapse" id="listfour">' +
+          '<div class="list-box">' +
+          '<div class="row">' +
+          '<div class="col-md-6">' +
+          '<div class="form-group">' +
+          '<label>Award Title</label>' +
+          '<input class="form-control" type="text" name="awardTitle" placeholder="">' +
+          '</div>' +
+          '</div>' +
+          '<div class="col-md-6">' +
+          '<div class="form-group">' +
+          '<label>Received Time</label>' +
+          '<input class="form-control" type="date" name="receivedTime" placeholder="">' +
+          '</div>' +
+          '</div>' +
+          '<div class="col-md-12">' +
+          '<div class="form-group">' +
+          '<label for="">Award Type:</label>' +
+          '<select name="awardType" class="form-control">' +
+          '<option value="3">Champion</option>' +
+          '<option value="2">First runner up</option>' +
+          '<option value="1">Second runner up</option>' +
+          '</select>' +
+          '</div>' +
+          '</div>' +
+          '</div>' +
+          '</div>' +
+          '</div>' +
+          '</div>' +
+          '</div>' +
+          '</div> ');
+    });
+    //romove award field
+    $("#removeaward").click(function (e) {
+      var div = document.getElementById('awardContainer2');
+      div.remove();
+    });
+
+    //add project field
+    $("#addproject").click(function (e) {
+      $("#projectContainer")
+        .append('<br><div  id="projectContainer2"> ' +
+          '<div class="list-content">' +
+          '<a href="#listfive" data-toggle="collapse" aria-expanded="false"' +
+          'aria-controls="listfive">Project' +
+          'Experience <i class="fa fa-chevron-down"></i></a>' +
+          '<div class="collapse" id="listfive">' +
+          '<div class="list-box">' +
+          '<div class="row">' +
+          '<div class="col-md-6">' +
+          '<div class="form-group">' +
+          '<label>Project Name</label>' +
+          '<input class="form-control" type="text" name="projectName" placeholder="">' +
+          '</div>' +
+          '</div>' +
+          '<div class="col-md-6">' +
+          '<div class="form-group">' +
+          '<label>Role in the project</label>' +
+          '<select name="projectRole" class="form-control">' +
+          '<option value="2">Individual</option>' +
+          '<option value="2">Manager</option>' +
+          '<option value="1">Team member</option>' +
+          '</select>' +
+          '</div>' +
+          '</div>' +
+          '<div class="col-md-6">' +
+          '<div class="form-group">' +
+          '<label>Project Duration(Start)</label>' +
+          '<input class="form-control" type="date" name="projectStart" placeholder="">' +
+          '</div>' +
+          '</div>' +
+          '<div class="col-md-6">' +
+          '<div class="form-group">' +
+          '<label>Project Duration(End)</label>' +
+          '<input class="form-control" type="date" name="projectEnd" placeholder="">' +
+          '</div>' +
+          '</div>' +
+          '<div class="col-md-12">' +
+          '<div class="form-group">' +
+          '<label>Project description</label>' +
+          '<textarea class="form-control" name="projectDesc" rows="3"></textarea>' +
+          '</div>' +
+          '</div>' +
+          '</div>' +
+          '</div>' +
+          '</div>' +
+          '</div>' +
+          '</div> ');
+    });
+    //romove project field
+    $("#removeproject").click(function (e) {
+      var div = document.getElementById('projectContainer2');
+      div.remove();
+    });
+    //add work field
+    $("#addwork").click(function (e) {
+      $("#workContainer")
+        .append('<br><div  id="workContainer2"> ' +
+          '<div class="list-content">' +
+          '<a href="#listsix" data-toggle="collapse" aria-expanded="false"' +
+          'aria-controls="listsix">Work' +
+          'Experience <i class="fa fa-chevron-down"></i></a>' +
+          '<div class="collapse" id="listsix">' +
+          '<div class="list-box">' +
+          '<div class="row">' +
+          '<div class="col-md-6">' +
+          '<div class="form-group">' +
+          '<label>Company Name</label>' +
+          '<input class="form-control" type="text" name="companyName" placeholder="">' +
+          '</div>' +
+          '</div>' +
+          '<div class="col-md-6">' +
+          '<div class="form-group">' +
+          '<label>Position</label>' +
+          '<select name="position" class="form-control">' +
+          '<option value="3">Manager</option>' +
+          '<option value="2">Senior</option>' +
+          '<option value="2">Assistant</option>' +
+          '<option value="1">Junior</option>' +
+          '<option value="1">Trainee</option>' +
+          '</select>' +
+          '</div>' +
+          '</div>' +
+          '<div class="col-md-6">' +
+          '<div class="form-group">' +
+          '<label>Salary </label>' +
+          '<input class="form-control" type="number" min="0" step="0.01" name="salary"' +
+          'placeholder="$">' +
+          '</div>' +
+          '</div>' +
+          '<div class="col-md-6">' +
+          '<div class="form-group">' +
+          '<label>Year of Experience</label>' +
+          '<input class="form-control" type="number" min="0" step="0.5" name="yearOfexp"' +
+          'placeholder="">' +
+          '</div>' +
+          '</div>' +
+          '<div class="col-md-12">' +
+          '<div class="form-group">' +
+          '<label>Work Responsibility</label>' +
+          '<textarea class="form-control" name="workResponsibility" rows="3"></textarea>' +
+          '</div>' +
+          '</div>' +
+          '</div>' +
+          '</div>' +
+          '</div>' +
+          '</div>' +
+          '</div> ');
+    });
+    //romove work field
+    $("#removework").click(function (e) {
+      var div = document.getElementById('workContainer2');
+      div.remove();
+    });
+
+
+
+
+  });
+  function addFields() {
+    // Container <div> where dynamic content will be placed
+    var container = document.getElementById("skillcontainer");
+    // Create an <input> element, set its type and name attributes
+    var input = document.createElement("input");
+    input.className = "form-control"
+    input.type = "text";
+    input.name = "skillName";
+    container.appendChild(input);
+  }
+  function removeFields() {
+    // Number of inputs to create
+
+    // Container <div> where dynamic content will be placed
+    var container = document.getElementById("skillcontainer");
+    // Clear previous contents of the container
+
+    if (container.hasChildNodes()) {
+
+      container.removeChild(container.lastChild);
+
+
+
+    }
+  }
+
+
+</script>
+
+
+</html>

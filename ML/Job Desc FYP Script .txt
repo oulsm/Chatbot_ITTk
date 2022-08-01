@@ -1,0 +1,33 @@
+Job Desc
+Job Title: Back-End Developer 
+Job Type :  Fulltime
+Qualification: Degree
+Career Level: Entry
+Year of Experience: 1
+
+Job Responsibilities:
+
+	1. Engage in software design and development work using object oriented programming languages include Java, C++ and Python.
+
+	2. Implementation of software products in could storge and management, serving financial services or cybersecurity 
+
+	3. Design and develop phases of software products and systems development projects
+
+	4. Build and maintain backend infrastructure
+
+Job Requirements: 
+
+	1. Understand build and maintain backend infrastructure
+
+	2. Able to read & write English 
+
+Language Requirements: Eng Mandarin
+
+Programming Language Requirements: Java (only)
+
+Company Name: ELEE CONSULTING LIMITED
+
+Field of Company: Fintech (last row)
+
+Company Overview:
+TBS Interactive Limited is a Hong Kong based lab, customizing O2O creative interactive solutions for PR or marketing events, helping the brands to enhance brand awareness and achieve marketing goals

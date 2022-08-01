@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <%- include('header.ejs') %>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <title>Resume</title>
+        <style>
+            @media (min-width: 992px) {
+                .container {
+                    margin: 0em auto;
+                    background-color: #fff;
+                    max-width: 50%;
+                    border-radius: 15px;
+                }
+
+                .centeritem td {
+                    padding-left: 10px;
+                }
+            }
+
+            @media (max-width: 992px) {
+                .container {
+                    font-size: small;
+                    margin: 0em auto;
+                    background-color: #fff;
+                    max-width: 100%;
+                    border-radius: 15px;
+                }
+
+                .nextbutton {
+                    margin-bottom: 15px;
+                }
+            }
+
+            .main-form {
+                width: 70%;
+                margin: auto;
+                margin-bottom: 20px;
+            }
+
+            .divider {
+                position: relative;
+                width: 100%;
+                margin-top: 1rem;
+                margin-bottom: 1rem;
+                border: 0;
+                border-top: 3px solid rgba(0, 0, 0, 0.1);
+            }
+
+            .row {
+                margin-top: 5px;
+                margin-bottom: 5px;
+            }
+
+            textarea {
+                margin-top: 5px;
+                width: 100%;
+            }
+
+            .addButton {
+                border-radius: 45%;
+            }
+
+            table {
+                width: 100%;
+            }
+        </style>
+</head>
+
+<body>
+    <%- include('navbar.ejs') %>
+        <div class="mainContainer">
+            <div class="container poppinsmedium">
+                <form method="POST" action="/submit-form" class="main-form h-auto ">
+                    <!--title-->
+
+                    <% resume.forEach(function(resumes) { %>
+
+                        <p class="text-center" style="font-size: 15px; padding-top: 5px;">Utilize your resume to
+                            generate personalized interview</p>
+
+                        <!-- Personal information -->
+                        <div class="form-group">
+                            <div class="row"><label class="poppinsbold"
+                                    style="font-size: 20px; margin-bottom: 20px;">Part
+                                    1. Personal information:</label></div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Firstname</label>
+                                        <input class="form-control" type="text" name="firstname"
+                                            value="<%= resumes.firstname %>" placeholder="" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Lastname</label>
+                                        <input class="form-control" type="text" name="lastname"
+                                            value="<%= resumes.lastname %>" placeholder="" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Contact Number</label>
+                                        <input class="form-control" type="tel" name="contactNo"
+                                            value="<%= resumes.contactNo %>" placeholder="" required>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Email</label>
+                                        <input class="form-control" type="email" name="email" placeholder=""
+                                            value="<%= resumes.email %>" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="divider"></div>
+                            <div class="row"><label class="poppinsbold"
+                                    style="font-size: 20px; margin-bottom: 20px;">Part
+                                    2. Education:</label></div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Institution</label>
+                                        <input class="form-control" type="text" name="institution" placeholder=""
+                                            value="<%= resumes.institution %>" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Qualification :</label>
+                                        <select name="qualification" class="form-control">
+                                            <%if(resumes.qualification==1){%>
+                                                <option value="1">Primary</option>
+                                                <%}else if(resumes.qualification==2){ %>
+                                                    <option value="2">Form 3</option>
+                                                    <%}else if(resumes.qualification==3){ %>
+                                                        <option value="3">School Certificate</option>
+                                                        <%}else if(resumes.qualification==4){ %>
+                                                            <option value="4">Non-Degree Tertiary</option>
+                                                            <%}else if(resumes.qualification==5){ %>
+                                                                <option value="5">Degree</option>
+                                                                <%}else if(resumes.qualification==6){ %>
+                                                                    <option value="6">Postgraduate or above</option>
+                                                                    <% }%>
+                                                                        <option value="6">Postgraduate or above</option>
+                                                                        <option value="5">Degree</option>
+                                                                        <option value="4">Non-Degree Tertiary</option>
+                                                                        <option value="3">School Certificate</option>
+                                                                        <option value="2">Form 3</option>
+                                                                        <option value="1">Primary</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Major</label>
+                                        <input type="text" name="major" class="form-control"
+                                            value="<%= resumes.major %>" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="firstname">Finish Year:</label>
+                                        <input type="number" name="finishYear" id="firstname" min="1950" max="2100"
+                                            step="1" class="form-control " value="<%= resumes.finishYear %>" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="lastname">CGPA</label>
+                                        <input type="number" name="CGPA" id="lastname" min="0" max="4" step="0.01"
+                                            class="form-control" value="<%= resumes.CGPA %>" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Honor:</label>
+                                        <select name="honor" class="form-control">
+                                            <% if(resumes.honor==1){%>
+                                                <option value="1">Ordinary degree</option>
+                                                <%}else if(resumes.honor==2){ %>
+                                                    <option value="2">Third Class honours</option>
+                                                    <%}else if(resumes.honor==3){ %>
+                                                        <option value="3">Lower Second Class honours</option>
+                                                        <%}else if(resumes.honor==4){ %>
+                                                            <option value="4">Upper Second Class Honours</option>
+                                                            <%}else if(resumes.honor==5){ %>
+                                                                <option value="5">First Class Honours</option>
+                                                                <% }%>
+                                                                    <option value="5">First Class Honours</option>
+                                                                    <option value="4">Upper Second Class Honours
+                                                                    </option>
+                                                                    <option value="3">Lower Second Class honours
+                                                                    </option>
+                                                                    <option value="2">Third Class honours</option>
+                                                                    <option value="1">Ordinary degree</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="divider"></div>
+                            <div class="row"><label class="poppinsbold"
+                                    style="font-size: 20px; margin-bottom: 20px;">Part
+                                    3. Skill set:</label></div>
+
+                            <div class="row">
+                                <!-- Language Requirements : -->
+                                <div class="col"><label>Language Requirements :</label></div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        
+                                        <table class="form-check centeritem">
+                                            <tr>
+                                                <td><label for="chinese">Chinese</label></td>
+                                                <td><input type="checkbox" id="Chinese" name="language"
+                                                        value="Chinese"></td>
+                                                <td><label for="english">English</label></td>
+                                                <td><input type="checkbox" id="English" name="language"
+                                                        value="English"></td>
+                                            </tr>
+                                            <tr>
+                                                <td><label for="mandarin">Mandarin</label></td>
+                                                <td><input type="checkbox" id="Mandarin" name="language"
+                                                        value="Mandarin"></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <!-- Programming Language Requirements : -->
+                                <div class="col"><label>Programming Language Requirements :</label></div>
+                                <div class="col">
+                                    <div class="form-group">
+                                      
+                                        <table class="form-check centeritem">
+                                            <tr>
+                                                <td><label for="SQL">SQL</label></td>
+                                                <td><input type="checkbox" id="SQL" name="Pro_language" value="SQL">
+                                                </td>
+                                                <td><label for="Java">Java</label></td>
+                                                <td><input type="checkbox" id="Java" name="Pro_language"
+                                                        value="Java"></td>
+                                                <td><label for="JavaScript">JavaScript</label></td>
+                                                <td><input type="checkbox" id="JavaScript" name="Pro_language"
+                                                        value="JavaScript"></td>
+                                            </tr>
+                                            <tr>
+                                                <td><label for="C++">C++/C</label></td>
+                                                <td><input type="checkbox" id="C++" name="Pro_language" value="C++">
+                                                </td>
+                                                <td><label for="C#">C#</label></td>
+                                                <td><input type="checkbox" id="C#" name="Pro_language" value="C#">
+                                                </td>
+                                                <td><label for="Python">Python</label></td>
+                                                <td><input type="checkbox" id="Python" name="Pro_language"
+                                                        value="Python"></td>
+                                            </tr>
+                                            <tr>
+                                                <td><label for="HTML">HTML</label></td>
+                                                <td><input type="checkbox" id="HTML" name="Pro_language"
+                                                        value="HTML"></td>
+                                                <td><label for="PHP">PHP</label></td>
+                                                <td><input type="checkbox" id="PHP" name="Pro_language" value="PHP">
+                                                </td>
+                                                <td><label for="NodeJS">Node JS</label></td>
+                                                <td><input type="checkbox" id="NodeJS" name="Pro_language"
+                                                        value="NodeJS"></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <script>
+                                         <% for (var i = 0; i < resumes.language.length; i++) { %>
+                                    document.getElementById("<%= resumes.language[i] %>").checked = true;
+                                             <% }%>
+                                             <% for (var i = 0; i < resumes.Pro_language.length; i++) { %>
+                                    document.getElementById("<%= resumes.Pro_language[i] %>").checked = true;
+                                             <% }%>
+                            </script>
+
+                            </script>
+
+                            <div class="row">
+                                <!-- skill -->
+                                <div class="col-md-12">
+                                    <div class="form-group" id="skillcontainer">
+                                        <label>Skills</label>
+                                        <% resumes.skill.forEach((skill)=> { %>
+                                            <input class="form-control" type="text" name="skillName"
+                                                value="<%= skill %>" placeholder="" required>
+                                            <% });%>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="row">
+                                <button type="button" class="ml-auto btn btn-success addButton"
+                                    onclick="addFields()">+</button>
+                                <button type="button" id="removeres" class="ml-1 btn btn-danger addButton"
+                                    onclick="removeFields()">-</button>
+                            </div>
+                            <div class="divider"></div>
+                            <!--activity-->
+                            <div class="row"><label class="poppinsbold"
+                                    style="font-size: 20px; margin-bottom: 20px;">Part
+                                    4. Activity:</label></div>
+                            <div>
+                                <div class="row">
+                                    <% resumes.activity.forEach((activity)=> { %>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="">Activity Name </label>
+                                                <input type="text" name="activityName"
+                                                    value="<%= activity.activityName%>" class="form-control">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label for="">Organizer</label>
+                                            <input type="text" name="organizer" value="<%= activity.organizer%>"
+                                                class="form-control">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="">Role in Activity</label>
+                                                <select name="activeRole" class="form-control">
+                                                    <option value="1">Participant</option>
+                                                    <% if(activity.activeRole==1){ %>
+                                                        <%} else if(activity.activeRole==2){ %>
+                                                            <option value="2">Event staff</option>
+                                                            <%} else if(activity.activeRole==3){ %>
+                                                                <option value="3">Organizer</option>
+                                                                <%}%>
+                                                                    <option value="3">Organizer</option>
+                                                                    <option value="2">Event staff</option>
+                                                                    <option value="1">Participant</option>
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="">Period(Start)</label>
+                                            <input type="date" name="periodStart" value="<%= activity.periodStart%>"
+                                                class="form-control">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="">Period(End)</label>
+                                            <input type="date" name="periodEnd" value="<%= activity.periodEnd%>"
+                                                class="form-control">
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Activity details</label>
+                                                <textarea class="form-control" name="activityDetail"
+                                                    rows="3"><%= activity.activityDetail%></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="divider"></div>
+                                        <% });%>
+                                </div>
+                                
+                            </div>
+
+
+                            <div id="activityContainer"> </div>
+                            <div class="row">
+                                <button type="button" class="ml-auto btn btn-success addButton"
+                                id="addactivity">+</button>
+                                <button type="button"  class="ml-1 btn btn-danger addButton"
+                                id="removeactivity">-</button>
+                            </div>
+
+                            <div class="row"><label class="poppinsbold"
+                                    style="font-size: 15px; margin-bottom: 10px;">Award:</label></div>
+
+                            <div class="row">
+                                <% resumes.award.forEach((award)=> { %>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Award Title</label>
+                                            <input class="form-control" type="text" value="<%= award.awardTitle %>"
+                                                name="awardTitle" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Received Time</label>
+                                            <input class="form-control" type="date" value="<%= award.receivedTime %>"
+                                                name="receivedTime" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="">Award Type:</label>
+                                            <select name="awardType" class="form-control">
+                                                <%if (award.awardType==1){%>
+                                                    <option value="1">Second runner up</option>
+                                                    <%}else if (award.awardType==2){%>
+                                                        <option value="2">First runner up</option>
+                                                        <%}else if (award.awardType==3){%>
+                                                            <option value="3">Champion</option>
+                                                            <%} %>
+                                                                <option value="3">Champion</option>
+                                                                <option value="2">First runner up</option>
+                                                                <option value="1">Second runner up</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="divider"></div>
+                                    <% });%>
+                                        
+                            </div>
+                            <div id="awardContainer"> </div>
+                            <div class="row">
+                                <button type="button" class="ml-auto btn btn-success addButton" id="addaward">+</button>
+                                <button type="button" 
+                                    class="ml-1 btn btn-danger addButton" id="removeaward">-</button>
+                            </div>
+                            <div class="divider"></div>
+                            <div class="row"><label class="poppinsbold"
+                                    style="font-size: 20px; margin-bottom: 20px;">Part
+                                    5. Experience:</label></div>
+                            <!-- Project Experience-->
+                            <div class="row"><label class="poppinsbold"
+                                    style="font-size: 15px; margin-bottom: 10px;">Project Experience:</label></div>
+                            <div class="row">
+                                <% resumes.project.forEach((project)=> { %>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Project Name</label>
+                                            <input class="form-control" type="text" value="<%= project.projectName %>"
+                                                name="projectName" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Role in the project</label>
+                                            <select name="projectRole" class="form-control">
+                                                <% if(project.projectRole==1){%>
+                                                    <option value="1">Team member</option>
+                                                    <%}else if(project.projectRole==2){%>
+                                                        <option value="2">Manager</option>
+                                                        <%}else if(project.projectRole==2){%>
+                                                            <option value="2">Individual</option>
+                                                            <%}%>
+                                                                <option value="2">Individual</option>
+                                                                <option value="2">Manager</option>
+                                                                <option value="1">Team member</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Project Duration(Start)</label>
+                                            <input class="form-control" type="date" value="<%= project.projectStart %>"
+                                                name="projectStart" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Project Duration(End)</label>
+                                            <input class="form-control" type="date" value="<%= project.projectEnd %>"
+                                                name="projectEnd" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Project description</label>
+                                            <textarea class="form-control" name="projectDesc"
+                                                rows="3"><%= project.projectDesc %></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="divider"></div>
+                                    <% });%>
+                                    
+                            </div>
+                            <div id="projectContainer"> </div>
+                            <div class="row">
+                                <button type="button" class="ml-auto btn btn-success addButton" id="addproject">+</button>
+                                <button type="button" 
+                                    class="ml-1 btn btn-danger addButton" id="removeproject">-</button>
+                            </div>
+                            <!-- work Experience-->
+                            <div class="row"><label class="poppinsbold"
+                                    style="font-size: 15px; margin-bottom: 10px;">Work
+                                    Experience:</label></div>
+                            <div class="row">
+                                <% resumes.work.forEach((work)=> { %>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Company Name</label>
+                                            <input class="form-control" type="text" value="<%= work.companyName %>"
+                                                name="companyName" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Position</label>
+                                            <select name="position" class="form-control">
+                                                <% if(work.position==1){%>
+                                                    <option value="1">Trainee</option>
+                                                    <%}else if(work.position==1){%>
+                                                        <option value="1">Junior</option>
+                                                        <%}else if(work.position==2){%>
+                                                            <option value="2">Assistant</option>
+                                                            <%}else if(work.position==2){%>
+                                                                <option value="2">Senior</option>
+                                                                <%}else if(work.position==3){%>
+                                                                    <option value="3">Manager</option>
+                                                                    <%}%>
+                                                                        <option value="3">Manager</option>
+                                                                        <option value="2">Senior</option>
+                                                                        <option value="2">Assistant</option>
+                                                                        <option value="1">Junior</option>
+                                                                        <option value="1">Trainee</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Salary </label>
+                                            <input class="form-control" type="number" value="<%= work.salary %>" min="0"
+                                                step="0.01" name="salary" placeholder="$">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Year of Experience</label>
+                                            <input class="form-control" type="number" min="0" step="0.5"
+                                                value="<%= work.yearOfexp %>" name="yearOfexp" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Work Responsibility</label>
+                                            <textarea class="form-control" name="workResponsibility"
+                                                rows="3"> <%= work.workResponsibility %></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="divider"></div>
+                                    <% });%>
+
+                                        
+                            </div>
+                            <div id="workContainer"> </div>
+                            <div class="row">
+                                <button type="button" class="ml-auto btn btn-success addButton" id="addwork">+</button>
+                                <button type="button"   class="ml-1 btn btn-danger addButton" id="removework">-</button>
+                            </div>
+                            <% }); %>
+
+
+
+                                
+                         
+                        </div>
+
+                     
+                        <button type="submit" class="btn btn-primary nextbutton">Finish</button>
+                       
+                </form>
+            </div>
+        </div>
+
+        <script>
+
+                function addFields() {
+                    // Container <div> where dynamic content will be placed
+                    var container = document.getElementById("skillcontainer");
+                    // Create an <input> element, set its type and name attributes
+                    var input = document.createElement("input");
+                    input.className = "form-control"
+                    input.type = "text";
+                    input.name = "skillName";
+                    container.appendChild(input);
+                }
+            function removeFields() {
+                // Number of inputs to create
+
+                // Container <div> where dynamic content will be placed
+                var container = document.getElementById("skillcontainer");
+                // Clear previous contents of the container
+
+                if (container.hasChildNodes()) {
+
+                    container.removeChild(container.lastChild);
+
+
+
+                }
+            }
+            //add activity field
+            $(document).ready(function (e) {
+
+                $("#addactivity").click(function (e) {
+                    $("#activityContainer")
+                        .append('<br><div class="row" id="activityContainer2"> ' +
+                            '<div class="col-md-12">' +
+                            '<div class="form-group">' +
+                            '<label for="">Activity Name </label>' +
+                            '<input type="text" name="activityName" class="form-control">' +
+                            '</div>' +
+                            '</div>' +
+                            '<div class="col-md-6">' +
+                            '<label for="">Organizer</label>' +
+                            '<input type="text" name="organizer" class="form-control">' +
+                            '</div>' +
+                            '<div class="col-md-6">' +
+                            '<div class="form-group">' +
+                            '<label for="">Role in Activity</label>' +
+                            '<select name="activeRole" class="form-control">' +
+                            '<option value="3">Organizer</option>' +
+                            '<option value="2">Event staff</option>' +
+                            '<option value="1">Participant</option>  ' +
+                            '</select>' +
+                            '</div>' +
+                            '</div>' +
+                            '<div class="col-md-6">' +
+                            '<label for="">Period(Start)</label>' +
+                            '<input type="date" name="periodStart" class="form-control">' +
+                            '</div>' +
+                            '<div class="col-md-6">' +
+                            '<label for="">Period(End)</label>' +
+                            '<input type="date" name="periodEnd" class="form-control">   ' +
+                            '</div> ' +
+                            '<div class="col-md-12">' +
+                            '<div class="form-group">' +
+                            '<label>Activity details</label>' +
+                            '<textarea class="form-control" name="activityDetail" rows="3"></textarea>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div> '+
+                            '<div class="divider"></div>'
+                            );
+                });
+                //remove activity field
+                $("#removeactivity").click(function (e) {
+                    var div = document.getElementById('activityContainer2');
+                    div.remove();
+                });
+                //add award field
+                $("#addaward").click(function (e) {
+                    $("#awardContainer")
+                        .append('<br><div class="row" id="awardContainer2"> ' +
+                            '<div class="col-md-12">' +
+
+
+
+
+                            '<div class="row">' +
+                            '<div class="col-md-6">' +
+                            '<div class="form-group">' +
+                            '<label>Award Title</label>' +
+                            '<input class="form-control" type="text" name="awardTitle" placeholder="">' +
+                            '</div>' +
+                            '</div>' +
+                            '<div class="col-md-6">' +
+                            '<div class="form-group">' +
+                            '<label>Received Time</label>' +
+                            '<input class="form-control" type="date" name="receivedTime" placeholder="">' +
+                            '</div>' +
+                            '</div>' +
+                            '<div class="col-md-12">' +
+                            '<div class="form-group">' +
+                            '<label for="">Award Type:</label>' +
+                            '<select name="awardType" class="form-control">' +
+                            '<option value="3">Champion</option>' +
+                            '<option value="2">First runner up</option>' +
+                            '<option value="1">Second runner up</option>' +
+                            '</select>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
+
+
+                            '</div>' +
+                            '</div> ');
+                });
+                //romove award field
+                $("#removeaward").click(function (e) {
+                    var div = document.getElementById('awardContainer2');
+                    div.remove();
+                });
+
+                //add project field
+                $("#addproject").click(function (e) {
+                    $("#projectContainer")
+                        .append('<br><div  id="projectContainer2"> ' +
+
+
+
+
+
+                            '<div class="row">' +
+                            '<div class="col-md-6">' +
+                            '<div class="form-group">' +
+                            '<label>Project Name</label>' +
+                            '<input class="form-control" type="text" name="projectName" placeholder="">' +
+                            '</div>' +
+                            '</div>' +
+                            '<div class="col-md-6">' +
+                            '<div class="form-group">' +
+                            '<label>Role in the project</label>' +
+                            '<select name="projectRole" class="form-control">' +
+                            '<option value="2">Individual</option>' +
+                            '<option value="2">Manager</option>' +
+                            '<option value="1">Team member</option>' +
+                            '</select>' +
+                            '</div>' +
+                            '</div>' +
+                            '<div class="col-md-6">' +
+                            '<div class="form-group">' +
+                            '<label>Project Duration(Start)</label>' +
+                            '<input class="form-control" type="date" name="projectStart" placeholder="">' +
+                            '</div>' +
+                            '</div>' +
+                            '<div class="col-md-6">' +
+                            '<div class="form-group">' +
+                            '<label>Project Duration(End)</label>' +
+                            '<input class="form-control" type="date" name="projectEnd" placeholder="">' +
+                            '</div>' +
+                            '</div>' +
+                            '<div class="col-md-12">' +
+                            '<div class="form-group">' +
+                            '<label>Project description</label>' +
+                            '<textarea class="form-control" name="projectDesc" rows="3"></textarea>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
+
+
+                            '</div> ');
+                });
+                //romove project field
+                $("#removeproject").click(function (e) {
+                    var div = document.getElementById('projectContainer2');
+                    div.remove();
+                });
+                //add work field
+                $("#addwork").click(function (e) {
+                    $("#workContainer")
+                        .append('<br><div  id="workContainer2"> ' +
+
+
+
+
+
+                            '<div class="row">' +
+                            '<div class="col-md-6">' +
+                            '<div class="form-group">' +
+                            '<label>Company Name</label>' +
+                            '<input class="form-control" type="text" name="companyName" placeholder="">' +
+                            '</div>' +
+                            '</div>' +
+                            '<div class="col-md-6">' +
+                            '<div class="form-group">' +
+                            '<label>Position</label>' +
+                            '<select name="position" class="form-control">' +
+                            '<option value="3">Manager</option>' +
+                            '<option value="2">Senior</option>' +
+                            '<option value="2">Assistant</option>' +
+                            '<option value="1">Junior</option>' +
+                            '<option value="1">Trainee</option>' +
+                            '</select>' +
+                            '</div>' +
+                            '</div>' +
+                            '<div class="col-md-6">' +
+                            '<div class="form-group">' +
+                            '<label>Salary </label>' +
+                            '<input class="form-control" type="number" min="0" step="0.01" name="salary"' +
+                            'placeholder="$">' +
+                            '</div>' +
+                            '</div>' +
+                            '<div class="col-md-6">' +
+                            '<div class="form-group">' +
+                            '<label>Year of Experience</label>' +
+                            '<input class="form-control" type="number" min="0" step="0.5" name="yearOfexp"' +
+                            'placeholder="">' +
+                            '</div>' +
+                            '</div>' +
+                            '<div class="col-md-12">' +
+                            '<div class="form-group">' +
+                            '<label>Work Responsibility</label>' +
+                            '<textarea class="form-control" name="workResponsibility" rows="3"></textarea>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
+
+
+
+                            '</div> ');
+                });
+                //romove work field
+                $("#removework").click(function (e) {
+                    var div = document.getElementById('workContainer2');
+                    div.remove();
+                });
+
+
+
+
+            });
+        </script>
+</body>
+
+</html>

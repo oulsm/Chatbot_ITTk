@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+  <%- include('header.ejs') %>
+    <title>Report</title>
+ 
+    <style>
+         body {
+        width: 100%;
+        
+        margin: 0;
+        padding: 0;
+
+    }
+    .button-div {
+  position: relative;
+}
+
+  
+
+    </style>
+    
+</head>
+
+<body>
+  <%- include('navbar.ejs') %>
+    <div class="mainContainer d-sm-flex">
+      <div class="logincontainer">
+        <div class="container" id="reportcontainer" style="width: 210mm;
+        height: auto; height:auto; margin:auto;background: rgb(255, 255, 255);">
+         <% reports.forEach(function(report) { %>
+          <div class="row">
+            <div class=" col-lg-5 col-sm-5 ">
+              <p class="reportdatail">
+                Report Date: <%= report.date %> <br>
+                Interview: <%= report.name %><br>
+                Job Application: <%= report.title %></p>
+            </div>
+
+            <div class=" flex bg-dark text-white col-lg-7 col-sm-7">
+              <p class="reporticon">PERFORMANCE REPORT</p>
+            </div>
+          </div>
+          <div class="row" style="height: 10%;">
+            <div class="col-lg-4  greenrow text-white">
+              SUMMARY
+            </div>
+            <div class=" col-lg-8 ">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-5 col-sm-3 ">
+              <canvas id="chart" width="100%" height="100%"></canvas>
+      
+            </div>
+            <div class="col-lg-7 col-sm-9">
+              <p style="text-decoration: underline; "> Job Description</p>
+              
+              <ul>
+                <% report.jobduty.forEach(function(job_duty) { %>
+                    <li>  <%= job_duty %>   </li>     
+                <% }); %>
+              </ul>    
+            </div>
+          </div>
+          <!-- Second -->
+          <div class="row" style="height: 10%;">
+            <div class="col-lg-4 greenrow text-white">
+              SELF-INTRODUCTION
+            </div>
+            <div class=" col-lg-8">
+            </div>
+          </div>
+          <div class="row ">
+            <%Object.keys(report.intro).forEach(function(key) {%>
+              <%if(key == 'grammar' && report.intro[key] < 3 ){%>
+                <div class="col-lg-12">
+                  <p class="crossmark"><span class="cross-checkmark">✖</span> Your grammar still a long way to go....  </p>
+                </div>
+            <%  }; %>
+            <%if(key == 'grammar' && report.intro[key] > 4 ){%>
+              <div class="col-lg-12">
+                <p class="circlemark"><span class="circle-checkmark">✓</span> Nice grammar and need a few improvement </p>  
+              </div>
+            <%  }; %>
+            <%if(key == 'concise' && report.intro[key][0] == 1  ){%>
+              <div class="col-lg-12">
+                <p class="crossmark"><span class="cross-checkmark">✖</span>Need express more of your information or don't over-explaining  </p> 
+              </div>
+            <%  }; %>
+            <%if(key == 'concise' && report.intro[key][0]  == 5 ){%>
+              <div class="col-lg-12">
+                <p class="circlemark"><span class="circle-checkmark">✓</span> You have ideal time management in your self-introduction   </p>  
+              </div>
+            <%  }; %>
+            <%if(key == 'concise' && report.intro[key][1] < 3   ){%>
+              <div class="col-lg-12">
+                <p class="crossmark"><span class="cross-checkmark">✖</span> Your wordings are not precise between resume and job description </p> 
+              </div>
+            <%  }; %>
+            <%if(key == 'concise' && report.intro[key][1]  > 3  ){%>
+              <div class="col-lg-12">
+                <p class="circlemark"><span class="circle-checkmark">✓</span> Articulate speech and precise word </p>  
+              </div>
+            <%  }; %>            
+
+            
+            <%  }); %>
+          </div>
+          <!-- Third -->
+          <div class="row" style="height: 10%;">
+            <div class="col-lg-4 greenrow text-white">
+              FOLLOW UP QUESTION(Skill)
+            </div>
+            <div class=" col-lg-8">
+            </div>
+          </div>
+          <div class="row ">
+            <%Object.keys(report.ques).forEach(function(key) {%>
+              <% if(key== "accuracy" &&  report.ques[key] > 0){ %>
+                <div class="col-lg-12">
+               <p class="circlemark"><span class="circle-checkmark">✓</span>Fully describing the skill or programming language and provide some supporting examples
+
+                 </p>
+             </div>
+ 
+               <%  }else if( key  == "accuracy" &&  report.ques[key] == -1){%>
+                 <div class="col-lg-12">
+                   <p class="crossmark"><span class="cross-checkmark">✖</span>Too short and need more explanation for the skill or programming language </p>
+                 </div>
+ 
+                 <%   }%>
+                 <%   if(key == "grammar" &&  report.ques[key] == -1){%>
+                   <div class="col-lg-12">
+                     <p class="crossmark"><span class="cross-checkmark">✖</span>Contains numerous errors in grammar, spelling, and punctuation </p>
+                   </div>
+                   <%   } %>
+                   <%if(key == 'grammar' && report.ques[key]  == 1 ){%>
+                    <div class="col-lg-12">
+                      <p class="circlemark"><span class="circle-checkmark">✓</span> Nice grammar but need a few improvement </p>  
+                    </div>
+                  <%  }; %>
+
+             
+             <%  });%>
+          
+
+          </div>
+          <!-- Fouth -->
+          <div class="row" style="height: 10%;">
+            <div class="col-lg-4 greenrow text-white">
+              FIELD OF COMPANY
+            </div>
+            <div class=" col-lg-8">
+            </div>
+          </div>
+          
+          
+          <div class="row ">
+            <%Object.keys(report.ques).forEach(function(key) {%>
+             <% if(key== "concise" &&  report.ques[key] > 3){ %>
+               <div class="col-lg-12">
+              <p class="circlemark"><span class="circle-checkmark">✓</span>Precise answers in describing related feild of company such as 
+              
+                <% for(var i = 0 ;i < report.area.length ;i++){%>
+                 <%= report.area[i]%>
+
+                  <%    } %>
+                </p>
+            </div>
+            <div class="col-lg-12">
+              <p class="circlemark"><span class="circle-checkmark">✓</span>Provide related work or project experience                
+                with some elaborations</p>
+            </div>
+
+              <%  }else if( key  == "concise" &&  report.ques[key] < 3){%>
+                <div class="col-lg-12">
+                  <p class="crossmark"><span class="cross-checkmark">✖</span>Please explain more clearly the feild of company like 
+                  
+                    <% for(var i = 0 ;i < report.area.length ;i++){%>
+                     <%= report.area[i]%>
+    
+                      <%    } %>
+                    </p>
+                </div>
+                <div class="col-lg-12">
+                  <p class="crossmark"><span class="cross-checkmark">✖</span>Need more example about project experience and a
+                    reason no how the experience related</p>
+                </div>
+
+                <%   }%>
+            
+            <%  });%>
+            
+          </div>
+          <!-- Future work expection -->
+         
+          
+        </div>
+      
+        <div>
+
+        <a href="/" class="btn btn-info">Return to Index page</a>
+        <button type="button" class="btn btn-info" style="float: right;" onclick="window.print()">Print report</button>
+      </div>
+
+    
+      </div>
+   
+      
+
+      <!-- Alert -->
+
+    </div>
+    </div>
+</body>
+<script> 
+
+  function printDiv() { 
+      var divContents = document.getElementById("reportcontainer").innerHTML; 
+      var a = window.open('', '', 'height=500, width=500'); 
+     // a.document.write('<html><head>');
+      a.document.write('<link rel="stylesheet" href="/style_css.css" type="text/css"/>'); 
+      a.document.write('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"><html>'); 
+
+      a.document.write('<body >'); 
+      a.document.write(divContents); 
+      a.document.write('</body></html>'); 
+      a.document.close(); 
+      a.print(); 
+  } 
+</script> 
+
+<script>
+  //var performance =[];
+  var grammar = 0;
+  var concise = 0;
+  var accuracy = 0;
+  var polite = 0;
+  var avg_concise = 0
+  <%Object.keys(report.intro).forEach(function(key) {%>
+    
+    if("<%= key %>" == "grammar"){
+      grammar = <%= report.intro[key]%>
+      
+    } else if("<%= key %>" == "concise"){ 
+      <%for (i = 0 ; i < report.intro[key].length ; i++){ %>
+        avg_concise += <%= report.intro[key][i]%>
+        <%  } %>
+        concise = avg_concise/ <%= report.intro[key].length%>
+        console.log(concise);
+       }
+    else if("<%= key %>" == "accuracy"){
+        accuracy = <%= report.intro[key]%>
+      }else if("<%= key %>" == "polite"){
+        polite = <%= report.intro[key]%>
+      }
+  <%  });%>
+  <%Object.keys(report.ques).forEach(function(key) {%>
+    if("<%= key %>" == "grammar" && <%= report.ques[key]%> == 1 ){
+      if(grammar> 3 ){
+        grammar = grammar
+      }else if(grammar <= 3){
+        grammar += 1.5
+      }
+    }else if("<%= key %>" == "grammar" && <%= report.ques[key]%> == -1){
+      if(grammar> 3 ){
+        grammar -= 1.5
+      }else if(grammar <= 3){
+        grammar = grammar
+      }
+    } 
+    if("<%= key %>" == "concise" && <%= report.ques[key]%> > 0){ 
+        concise = (concise+<%= report.ques[key]%>)/2
+       }
+    if("<%= key %>" == "accuracy" && <%= report.ques[key]%> == 1 ){
+      if(accuracy> 3 ){
+        accuracy = accuracy
+      }else if(accuracy <= 3){
+        accuracy += 1.5
+      }
+    }else if("<%= key %>" == "accuracy" && <%= report.ques[key]%> == -1){
+      if(accuracy> 3 ){
+        accuracy -= 1.5
+      }else if(accuracy <= 3){
+        accuracy = accuracy
+      }
+    } 
+    if("<%= key %>" == "polite" && <%= report.ques[key]%> == 1){
+      if(polite> 3 ){
+        polite = polite
+      }else if(polite <= 3){
+        polite += 1.5
+      }
+    }else if("<%= key %>" == "polite" && <%= report.ques[key]%> == -1){
+      if(polite> 3 ){
+        polite -= 1.5
+      }else if(polite <= 3){
+        polite = polite
+      }
+    } 
+
+    <%  });%>
+   
+ 
+  
+  var chart1 = new Chart(document.getElementById('chart'), {
+  type: 'radar',
+  
+  data: {
+    labels: ['Grammar', 'Concise', 'Accuracy', 'Polite'],
+    datasets: [{
+      label: 'Performance',
+      data: [grammar,concise,accuracy,polite]
+    }]
+  },
+  options: {
+    scale: {
+   
+      gridLines: {
+        color: ['black', 'red', 'orange', 'yellow', 'green']
+      },
+      ticks: {
+        beginAtZero: true,
+        max: 5,
+        min: 0,
+        stepSize: 1
+    }
+    }
+  }
+});
+</script>
+
+
+  <% }); %>
+</html>
